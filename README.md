@@ -147,6 +147,7 @@ docker compose up --build
 ---
 
 <br/>
+
 ## Docker Compose & Neural Network Training
 
 <div align="center">
