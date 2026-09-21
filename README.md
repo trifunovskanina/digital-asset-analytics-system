@@ -146,7 +146,12 @@ docker compose up --build
 
 ---
 
-## Docker Compose & Neural Network Training
+## Docker Compose Startup
 
 <img src="screenshots/1.png" width="800"/>
+
+---
+
+## Neural Network Training
+
 <img src="screenshots/2.png" width="800"/>
