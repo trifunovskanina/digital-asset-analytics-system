@@ -148,7 +148,5 @@ docker compose up --build
 
 ## Docker Compose & Neural Network Training
 
-<div align="center">
 <img src="screenshots/1.png" width="800"/>
 <img src="screenshots/2.png" width="800"/>
-</div>
