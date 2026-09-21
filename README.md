@@ -142,3 +142,19 @@ Each service exposes interactive documentation:
 
 ```bash
 docker compose up --build
+```
+
+--- 
+
+<div align="center">
+
+## System Demonstration
+
+<img src="screenshots/1.png" width="800"/>
+<img src="screenshots/2.png" width="800"/>
+<img src="screenshots/3.png" width="800"/>
+<img src="screenshots/4.png" width="800"/>
+<img src="screenshots/5.png" width="800"/>
+<img src="screenshots/6.png" width="800"/>
+<img src="screenshots/7.png" width="800"/>
+</div>
