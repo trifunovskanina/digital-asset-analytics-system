@@ -41,6 +41,68 @@ Services communicate internally through Docker’s network.
 
 ---
 
+## Project Structure
+
+```text
+digital-asset-analytics-system/
+│
+├── analytics/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/trifunovska/analytics/
+│   │   │   │   ├── model/              # Domain models
+│   │   │   │   ├── repository/         # Database repositories
+│   │   │   │   ├── service/            # Business logic
+│   │   │   │   ├── web/                # Controllers
+│   │   │   │   └── AnalyticsApplication.java
+│   │   │   │
+│   │   │   └── resources/
+│   │   │       ├── templates/           # Thymeleaf pages
+│   │   │       ├── static/              # CSS and static resources
+│   │   │       └── application.properties
+│   │   │
+│   │   └── test/                        # Spring Boot tests
+│   │
+│   ├── python/
+│   │   ├── lstm/
+│   │   │   ├── app.py                   # LSTM FastAPI application
+│   │   │   └── lstm.py                  # LSTM model implementation
+│   │   │
+│   │   └── nlp/
+│   │       ├── app.py                   # NLP FastAPI application
+│   │       └── nlp.py                   # Sentiment analysis implementation
+│   │
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
+│
+├── db/
+│   ├── 01_schema.sql                    # Database schema
+│   ├── 02_load_ohlcv.sql                # Market data initialization
+│   ├── 03_load_news.sql                 # News data initialization
+│   └── data/
+│       ├── ohlcv.csv                    # Historical market data
+│       └── news.csv                     # News data
+│
+├── spring/
+│   └── Dockerfile                       # Spring Boot container
+│
+├── lstm/
+│   └── Dockerfile                       # LSTM service container
+│
+├── nlp/
+│   └── Dockerfile                       # NLP service container
+│
+├── azure/                               # Azure deployment
+│
+├── docker-compose.yml                   # Multi-container orchestration
+├── .dockerignore
+├── .gitignore
+└── README.md
+```
+
+---
+
 ## Exposed Ports
 
 | Service  | Technology   | Port |
