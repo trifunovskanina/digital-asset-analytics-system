@@ -50,52 +50,52 @@ digital-asset-analytics-system/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/com/trifunovska/analytics/
-│   │   │   │   ├── model/              # Domain models
-│   │   │   │   ├── repository/         # Database repositories
-│   │   │   │   ├── service/            # Business logic
-│   │   │   │   ├── web/                # Controllers
+│   │   │   │   ├── model/              
+│   │   │   │   ├── repository/         
+│   │   │   │   ├── service/            
+│   │   │   │   ├── web/                
 │   │   │   │   └── AnalyticsApplication.java
 │   │   │   │
 │   │   │   └── resources/
-│   │   │       ├── templates/           # Thymeleaf pages
-│   │   │       ├── static/              # CSS and static resources
+│   │   │       ├── templates/           
+│   │   │       ├── static/             
 │   │   │       └── application.properties
 │   │   │
-│   │   └── test/                        # Spring Boot tests
+│   │   └── test/                        
 │   │
 │   ├── python/
 │   │   ├── lstm/
-│   │   │   ├── app.py                   # LSTM FastAPI application
-│   │   │   └── lstm.py                  # LSTM model implementation
+│   │   │   ├── app.py                   
+│   │   │   └── lstm.py                  
 │   │   │
 │   │   └── nlp/
-│   │       ├── app.py                   # NLP FastAPI application
-│   │       └── nlp.py                   # Sentiment analysis implementation
+│   │       ├── app.py                 
+│   │       └── nlp.py                  
 │   │
 │   ├── pom.xml
 │   ├── mvnw
 │   └── mvnw.cmd
 │
 ├── db/
-│   ├── 01_schema.sql                    # Database schema
-│   ├── 02_load_ohlcv.sql                # Market data initialization
-│   ├── 03_load_news.sql                 # News data initialization
+│   ├── 01_schema.sql                    
+│   ├── 02_load_ohlcv.sql             
+│   ├── 03_load_news.sql               
 │   └── data/
-│       ├── ohlcv.csv                    # Historical market data
-│       └── news.csv                     # News data
+│       ├── ohlcv.csv                 
+│       └── news.csv                    
 │
 ├── spring/
-│   └── Dockerfile                       # Spring Boot container
+│   └── Dockerfile                    
 │
 ├── lstm/
-│   └── Dockerfile                       # LSTM service container
+│   └── Dockerfile                      
 │
 ├── nlp/
-│   └── Dockerfile                       # NLP service container
+│   └── Dockerfile                      
 │
-├── azure/                               # Azure deployment
+├── azure/                            
 │
-├── docker-compose.yml                   # Multi-container orchestration
+├── docker-compose.yml                   
 ├── .dockerignore
 ├── .gitignore
 └── README.md
