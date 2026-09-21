@@ -152,10 +152,10 @@ docker compose up --build
 
 ### Docker Compose Service Startup
 
-<img src="screenshots/1.png" width="600"/>
+<img src="screenshots/1.png" width="800"/>
 
 ### Neural Network Training and Validation Loss
 
-<img src="screenshots/2.png" width="600"/>
+<img src="screenshots/2.png" width="800"/>
 
 </div>
