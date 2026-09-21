@@ -156,6 +156,6 @@ Docker Compose launches the application stack, recreating the containers. Postgr
 
 ## Neural Network Training
 
-The microservice trains a neural network over 200 epochs. The training and validation loss **decreasing**, which indicates that the model is learning the underlying time-series patterns.
+The microservice trains a neural network over 200 epochs. The training and validation loss are **decreasing**, which indicates that the model is learning the underlying time-series patterns.
 
 <img src="screenshots/2.png" width="800"/>
