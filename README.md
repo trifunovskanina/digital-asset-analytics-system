@@ -148,14 +148,8 @@ docker compose up --build
 
 <div align="center">
 
-## System Execution
-
-### Docker Compose Service Startup
-
+## Docker Compose & Neural Network Training
 <img src="screenshots/1.png" width="800"/>
-
-### Neural Network Training and Validation Loss
-
 <img src="screenshots/2.png" width="800"/>
 
 </div>
