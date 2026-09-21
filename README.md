@@ -143,3 +143,19 @@ Each service exposes interactive documentation:
 ```bash
 docker compose up --build
 ```
+
+---
+
+<div align="center">
+
+## System Execution
+
+### Docker Compose Service Startup
+
+<img src="screenshots/1.png" width="600"/>
+
+### Neural Network Training and Validation Loss
+
+<img src="screenshots/2.png" width="600"/>
+
+</div>
