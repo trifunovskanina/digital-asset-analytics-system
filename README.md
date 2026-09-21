@@ -84,20 +84,6 @@ digital-asset-analytics-system/
 │       ├── ohlcv.csv                 
 │       └── news.csv                    
 │
-├── spring/
-│   └── Dockerfile                    
-│
-├── lstm/
-│   └── Dockerfile                      
-│
-├── nlp/
-│   └── Dockerfile                      
-│
-├── azure/                            
-│
-├── docker-compose.yml                   
-├── .dockerignore
-├── .gitignore
 └── README.md
 ```
 
