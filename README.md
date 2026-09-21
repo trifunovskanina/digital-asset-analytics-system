@@ -148,10 +148,14 @@ docker compose up --build
 
 ## Docker Compose Startup
 
+Docker Compose launches the application stack, recreating the containers. PostgreSQL initializes ready to accept connections, followed by the Spring Boot application starting successfully.
+
 <img src="screenshots/1.png" width="800"/>
 
 ---
 
 ## Neural Network Training
+
+The micro service trains a neural network over 200 epochs, displaying the training and validation loss **decreasing**, indicating that the model is learning the underlying time-series patterns.
 
 <img src="screenshots/2.png" width="800"/>
