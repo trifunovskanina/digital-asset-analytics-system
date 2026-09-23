@@ -142,7 +142,7 @@ Each service exposes interactive documentation:
 
 Docker Compose launches the application stack, recreating the containers. PostgreSQL initializes and becomes ready to accept connections, followed by the Spring Boot application starting successfully. All services communicate internally through Docker's network.
 
-<img src="screenshots/1.png" width="800"/>
+<img src="screenshots/1.png" width="600"/>
 
 ---
 
@@ -150,7 +150,7 @@ Docker Compose launches the application stack, recreating the containers. Postgr
 
 The LSTM microservice trains a neural network over 200 epochs. The training and validation loss are **decreasing**, which indicates that the model is learning the historical patterns.
 
-<img src="screenshots/2.png" width="800"/>
+<img src="screenshots/2.png" width="600"/>
 
 ---
 
@@ -158,7 +158,7 @@ The LSTM microservice trains a neural network over 200 epochs. The training and 
 
 Displays the predicted closing prices for the specified period, along with model performance metrics including RMSE, MAPE and R².
 
-<img src="screenshots/3.png" width="800"/>
+<img src="screenshots/3.png" width="600"/>
 
 ---
 
