@@ -154,14 +154,6 @@ The LSTM microservice trains a neural network over 200 epochs. The training and 
 
 ---
 
-## User Interface
-
-Displays the predicted closing prices for the specified period, along with model performance metrics including RMSE, MAPE and R².
-
-<img src="screenshots/3.png" width="600"/>
-
----
-
 ## Running the Project
 
 ```bash
