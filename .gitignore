@@ -27,3 +27,4 @@ build/
 !**/src/test/**/build/
 
 .vscode/
+.DS_Store
