@@ -2,166 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>News Sentiment Analysis</title>
-    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-        .table-slider {
-            width: 100%;
-            overflow-x: auto;
-            margin: 20px auto;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        table {
-            max-width: 65%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        thead th {
-            background: #1d2d50;
-            color: white;
-            padding: 10px 15px;
-            position: sticky;
-            top: 0;
-            white-space: nowrap;
-            font-weight: 600;
-        }
-
-        table td {
-            padding: 8px 12px;
-            border-bottom: 1px solid #e0e0e0;
-            white-space: nowrap;
-        }
-
-        tbody tr:hover {
-            background: #f5f7fa;
-        }
-
-        /* fix ugly long floats */
-        .num {
-            text-align: right;
-            font-family: monospace;
-        }
-
-        /* make the filter form pretty */
-        .filter-box input {
-            padding: 6px;
-            width: 120px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            margin-left: 5px;
-        }
-
-        .filter-box button {
-            background: #1d2d50;
-            color: white;
-            padding: 7px 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .filter-box button:hover {
-            background: #233861;
-        }
-
-        form.filter-box {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            max-width: 700px;
-        }
-
-        td {
-            max-width: 150px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .table-wrapper {
-            max-width: 1100px;
-            margin: 20px auto;
-            overflow-x: auto;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        .table-wrapper table {
-            border-collapse: collapse;
-            font-size: 14px;
-            width: 100%;
-        }
-
-        thead th {
-            background: #1d2d50;
-            color: white;
-            padding: 10px 15px;
-            white-space: nowrap;
-            font-weight: 600;
-        }
-
-        .table-wrapper td {
-            padding: 8px 12px;
-            max-width: 150px;
-            overflow: hidden;
-        }
-
-        h1 {
-            text-align: center;
-            max-width: 40%;
-        }
-
-        .sentiment-positive {
-            color: rgb(7, 112, 16);
-            font-weight: 600;
-        }
-
-        .sentiment-negative {
-            color: rgb(164, 18, 18);
-            font-weight: 600;
-        }
-
-        .sentiment-summary {
-            width: 680px;
-            height: 360px;
-            margin: 30px auto 20px auto;
-            padding: 22px 32px;
-            background: white;
-            border-radius: 14px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/nlp.css}"/>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="nav-title">Digital Asset Analytics System</div>
-        <nav class="nav-links">
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/lstm-form}">LSTM Forecast</a>
-            <a th:href="@{/nlp}">Sentiment Analysis</a>
+        <div class="nav-title">
+            <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#logo}"></use></svg>
+            Digital Asset Analytics
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Markets</a>
+            <a th:href="@{/lstm-form}">Forecast</a>
+            <a th:href="@{/nlp}">Sentiment</a>
         </nav>
     </header>
 
-    <h1>NEWS SENTIMENT ANALYSIS</h1>
-
-    <form method="GET" th:action="@{/nlp}" style="margin-bottom: 20px;" class="filter-box">
+    <form method="GET" th:action="@{/nlp}" class="filter-box">
+        <h1>
+            <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#sentiment}"></use></svg>
+            NEWS SENTIMENT ANALYSIS
+        </h1>
 
         <label>
             From:
@@ -178,17 +53,19 @@
             <input type="text" name="limit">
         </label>
 
-        <button type="submit" style="margin-left: 10px;">Filter</button>
-        <a th:href="@{/nlp}" style="margin-left: 5px;">Clear</a>
+        <button type="submit">Filter</button>
+        <a th:href="@{/nlp}">Clear</a>
     </form>
 
     <div class="sentiment-summary">
-        <p style="text-align:center; font-size:14px; color:#666; margin: 18px 0;">
+        <p class="sentiment-note">
             Distribution based on transformer-based sentiment classification. <br/>
             <strong>DistilBERT</strong>
             (<em>distilbert-base-uncased-finetuned-sst-2-english</em>).
         </p>
-        <canvas id="sentimentChart"></canvas>
+        <div class="sentiment-chart">
+            <canvas id="sentimentChart" th:data-positive="${positiveCount}" th:data-negative="${negativeCount}"></canvas>
+        </div>
     </div>
 
     <div class="table-wrapper">
@@ -212,71 +89,14 @@
                 <td th:text="${row['sentiment_label']}"
                     th:classappend="${row['sentiment_label']} == 'POSITIVE'
                           ? 'sentiment-positive' : 'sentiment-negative'"></td>
-                <td th:text="${row['sentiment_score']}"></td>
+                <td th:text="${#numbers.formatDecimal(row['sentiment_score'], 1, 4, 'POINT')}"></td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <script th:inline="javascript">
-        const positiveCount = [[${positiveCount}]];
-        const negativeCount = [[${negativeCount}]];
-
-        const ctx = document.getElementById('sentimentChart').getContext('2d');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['SENTIMENT'],
-                datasets: [
-                    {
-                        label: 'POSITIVE',
-                        data: [positiveCount],
-                        backgroundColor: 'rgba(0,255,6, 0.2)',
-                        borderColor: 'rgba(0,147,3,0.5)',
-                        borderWidth: 1,
-                        marginBottom: 5
-                    },
-                    {
-                        label: 'NEGATIVE',
-                        data: [negativeCount],
-                        backgroundColor: 'rgba(255,0,0, 0.2)',
-                        borderColor: 'rgba(121,0,13,0.5)',
-                        borderWidth: 1,
-                        marginBottom: 5
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        bottom: 15
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: { display: false },
-                        ticks: {
-                            padding: 12
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#e6e9ef'
-                        },
-                        ticks: {
-                            precision: 0,
-                            stepSize: 1,
-                            padding: 10
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/nlp.js}"></script>
 
 </body>
 </html>

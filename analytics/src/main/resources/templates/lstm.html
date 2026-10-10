@@ -1,210 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LSTM Forecast</title>
-    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-
-        h1, h2, p, small, span {
-            color: #2c3e4f;
-        }
-
-        body {
-            background: #f4f7fb;
-        }
-
-        .page-container {
-            max-width: 1100px;
-            margin: 50px auto 40px;
-            padding: 0 16px;
-        }
-
-        .form-card,
-        .metrics-card,
-        .table-card {
-            background: #ffffff;
-            color: #2c3e4f;
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-            border: 1px solid rgba(30, 58, 138, 0.15);
-        }
-
-        .form-card h1,
-        .metrics-card h2,
-        .table-card h2 {
-            margin-top: 0;
-            margin-bottom: 14px;
-            font-size: 28px;
-            letter-spacing: 1px;
-            text-align: left;
-            color: #2c3e4f;
-        }
-
-        .ta-form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            align-items: flex-end;
-        }
-
-        .ta-form .field {
-            display: flex;
-            flex-direction: column;
-            min-width: 160px;
-        }
-
-        .ta-form label {
-            font-size: 13px;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #2c3e4f;
-        }
-
-        .ta-form input,
-        .ta-form select {
-            padding: 8px 10px;
-            border-radius: 8px;
-            border: 1px solid #4b5563;
-            background: #fff;
-            color: #2c3e4f;
-            font-size: 14px;
-        }
-
-        .ta-form button {
-            padding: 10px 18px;
-            border-radius: 999px;
-            border: none;
-            background: #182e42;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 14px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-
-        .ta-form button:hover {
-            background: #2a4965;
-        }
-
-        .metrics-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 12px;
-        }
-
-        .metrics-header h2 {
-            margin: 0;
-            color: #2c3e4f;
-            font-size: 20px;
-        }
-
-        .metrics-subtitle {
-            font-size: 13px;
-            color: #2c3e4f;
-        }
-
-        .metrics-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 8px;
-        }
-
-        .metric {
-            min-width: 120px;
-            padding: 10px 14px;
-            background: #fff;
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            color: #2c3e4f;
-            border-radius: 8px;
-        }
-
-        .metric-label {
-            display: block;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #182e42;
-            margin-bottom: 4px;
-        }
-
-        .metric-value {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .table-card h2 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 20px;
-            color: #2c3e4f;
-        }
-
-        .table-card small {
-            color: #2c3e4f;
-            font-size: 12px;
-        }
-
-        .table-slider {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 420px;
-        }
-
-        thead {
-            background: #182e42;
-        }
-
-        th,
-        td {
-            padding: 8px 10px;
-            border-bottom: 1px solid rgba(55, 65, 81, 0.2);
-            font-size: 13px;
-            white-space: nowrap;
-        }
-
-        th {
-            text-align: left;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #fff;
-        }
-
-        tbody tr:nth-child(2n) {
-            background: #f4f7fb;
-        }
-
-        tbody tr:hover {
-            background: #e2ecf7;
-        }
-
-        canvas {
-            background: #ffffff !important;
-        }
-
-
-    </style>
+    <link rel="stylesheet" th:href="@{/css/lstm.css}"/>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="nav-title">Digital Asset Analytics System</div>
-        <nav class="nav-links">
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/lstm-form}">LSTM Forecast</a>
-            <a th:href="@{/nlp}">Sentiment Analysis</a>
+        <div class="nav-title">
+            <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#logo}"></use></svg>
+            Digital Asset Analytics
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Markets</a>
+            <a th:href="@{/lstm-form}">Forecast</a>
+            <a th:href="@{/nlp}">Sentiment</a>
         </nav>
     </header>
 
@@ -212,18 +36,14 @@
 
         <section class="form-card">
             <h1>
+                <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#forecast}"></use></svg>
                 LSTM PRICE FORECAST
-                <span style="font-size: 18px;
-                 margin-left: 10px;
-                 padding: 4px 10px;
-                 border-radius: 999px;
-                 background: #2c3e4f;
-                 color: #fff;"
+                <span class="symbol-badge"
                       th:text="${symbol.toUpperCase()}">
                 </span>
             </h1>
 
-            <p style="margin: 15px 0; color:#2c3e4f; font-size:13px;">
+            <p class="forecast-note">
                 Forecasting next <span th:text="${days}"></span> days using LSTM model
             </p>
 
@@ -272,7 +92,7 @@
                 </div>
 
                 <div class="metric">
-                    <span class="metric-label">MAPE (%)</span>
+                    <span class="metric-label">MAPE</span>
                     <span class="metric-value"
                           th:text="${result['metrics'] != null ? #numbers.formatDecimal(result['metrics']['mape'], 1, 2) : 'N/A'}">
                      </span>
@@ -292,7 +112,7 @@
         <section class="table-card" th:if="${result != null}">
             <h2>Forecast Chart</h2>
             <small th:text="'Symbol: ' + ${symbol.toUpperCase()}"></small>
-            <div style="margin-top: 16px;">
+            <div class="chart-wrap">
                 <canvas id="forecastChart" height="120"></canvas>
             </div>
         </section>
@@ -300,7 +120,7 @@
         <section class="table-card" th:if="${result != null}">
             <h2>Validation Chart – ACTUAL vs PREDICTED</h2>
             <small>Last validation window used during training</small>
-            <div style="margin-top: 16px;">
+            <div class="chart-wrap">
                 <canvas id="validationChart" height="120"></canvas>
             </div>
         </section>
@@ -323,7 +143,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="f, iter : ${result['future']}">
+                    <tr th:each="f, iter : ${result['future']}"
+                        th:data-date="${f['date']}" th:data-price="${f['predicted_close']}">
                         <td th:text="${iter.index + 1}"></td>
                         <td th:text="${f['date']}"></td>
                         <td th:text="${#numbers.formatDecimal(f['predicted_close'], 1, 2)}"></td>
@@ -347,7 +168,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="trueVal, iter : ${result['validation']['true']}">
+                    <tr th:each="trueVal, iter : ${result['validation']['true']}"
+                        th:data-actual="${trueVal}" th:data-predicted="${result['validation']['pred'][iter.index]}">
                         <td th:text="${iter.index + 1}"></td>
                         <td th:text="${#numbers.formatDecimal(trueVal, 1, 2)}"></td>
                         <td th:text="${#numbers.formatDecimal(result['validation']['pred'][iter.index], 1, 2)}"></td>
@@ -359,104 +181,8 @@
 
     </div>
 
-
-    <script th:inline="javascript">
-        /*[[
-            ${result}
-        ]]*/
-    </script>
-
-    <script th:inline="javascript">
-        const futureDates  = /*[[${result['future'].![date]}]]*/ [];
-        const futurePrices = /*[[${result['future'].![predicted_close]}]]*/ [];
-
-        const valTrue  = /*[[${result['validation']['true']}]]*/ [];
-        const valPred  = /*[[${result['validation']['pred']}]]*/ [];
-
-        const valLabels = valTrue.map((_, i) => i + 1);
-
-        const forecastCtx = document.getElementById('forecastChart');
-        if (forecastCtx) {
-            new Chart(forecastCtx, {
-                type: 'line',
-                data: {
-                    labels: futureDates,
-                    datasets: [{
-                        label: 'Predicted Closing Price',
-                        data: futurePrices,
-                        tension: 0.25,
-                        borderWidth: 2,
-                        pointRadius: 2
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: { display: true }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Price'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        const validationCtx = document.getElementById('validationChart');
-        if (validationCtx) {
-            new Chart(validationCtx, {
-                type: 'line',
-                data: {
-                    labels: valLabels,
-                    datasets: [
-                        {
-                            label: 'Actual',
-                            data: valTrue,
-                            borderWidth: 2,
-                            tension: 0.25,
-                            pointRadius: 0
-                        },
-                        {
-                            label: 'Predicted',
-                            data: valPred,
-                            borderWidth: 2,
-                            tension: 0.25,
-                            pointRadius: 0
-                        }
-                    ]
-                },
-                options: {
-                    plugins: {
-                        legend: { display: true }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Validation step'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Price'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    </script>
-
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/lstm.js}"></script>
 
 </body>
 </html>

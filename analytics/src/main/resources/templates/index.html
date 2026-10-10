@@ -2,23 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Digital Asset Analytics System</title>
-    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="nav-title">Digital Asset Analytics System</div>
-        <nav class="nav-links">
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/lstm-form}">LSTM Forecast</a>
-            <a th:href="@{/nlp}">Sentiment Analysis</a>
+        <div class="nav-title">
+            <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#logo}"></use></svg>
+            Digital Asset Analytics
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Markets</a>
+            <a th:href="@{/lstm-form}">Forecast</a>
+            <a th:href="@{/nlp}">Sentiment</a>
         </nav>
     </header>
 
-    <h1>DIGITAL ASSETS</h1>
+    <form method="GET" th:action="@{/}" class="filter-box">
+        <h1>
+            <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#market}"></use></svg>
+            MARKET DATA
+        </h1>
 
-    <form method="GET" th:action="@{/}" style="margin-bottom: 20px;" class="filter-box">
         <label>
             Symbol:
             <input type="text" name="symbol">
@@ -39,8 +55,8 @@
             <input type="text" name="limit" min="1">
         </label>
 
-        <button type="submit" style="margin-left: 10px;">Filter</button>
-        <a th:href="@{/}" style="margin-left: 5px;">Clear</a>
+        <button type="submit">Filter</button>
+        <a th:href="@{/}">Clear</a>
     </form>
 
     <table>
@@ -70,6 +86,8 @@
             </tr>
         </tbody>
     </table>
+
+    <script th:src="@{/js/navbar.js}"></script>
 
 </body>
 </html>

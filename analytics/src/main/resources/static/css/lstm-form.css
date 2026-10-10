@@ -1,0 +1,131 @@
+body {
+    background: #f4f7fb;
+}
+
+.page-wrapper {
+    width: var(--content-fluid);
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.ta-form-card {
+    margin: 40px auto;
+    background: #ffffff;
+    color: #2c3e4f;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    border: 1px solid rgba(30, 58, 138, 0.15);
+}
+
+.ta-form-card:first-child {
+    margin-top: 0;
+}
+
+.ta-form-card.arch-card {
+    margin-bottom: 24px;
+}
+
+.ta-form-card h1 {
+    color: #2c3e4f;
+}
+
+.ta-form-card form {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 18px 24px;
+}
+
+.ta-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px 24px;
+    flex: 1;
+    min-width: 0;
+}
+
+.ta-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ta-form-group label {
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.ta-form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #4b5563;
+    background: #ffffff;
+    color: #2c3e4f;
+    font-size: 14px;
+}
+
+.ta-form-group input:focus {
+    outline: none;
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 1px rgba(37,99,235,0.4);
+}
+
+.ta-form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ta-submit-btn {
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: none;
+    background: #182e42;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.ta-submit-btn:hover {
+    background: #2a4965;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.ta-form-card > svg {
+    width: 100%;
+    max-width: 900px;
+}
+
+.table-slider.arch-slider {
+    margin-top: 12px;
+}
+
+.arch-table {
+    color: #2c3e4f;
+}
+
+.table-slider .arch-table th,
+.table-slider .arch-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px;
+}
+
+.arch-totals {
+    margin-top: 10px;
+    font-size: 15px;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .ta-form-card form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

@@ -2,114 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title th:text="${symbol}"></title>
-    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-        .filter-box label {
-            display: flex;
-            flex-direction: column;
-            font-size: 14px;
-            color: #444;
-        }
-
-        .filter-box input[type="text"],
-        .filter-box input[type="date"] {
-            padding: 6px 8px;
-            width: 150px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-top: 3px;
-            font-size: 14px;
-        }
-
-        .filter-box button {
-            padding: 8px 14px;
-            background: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .filter-box button:hover {
-            background: #1f2f3b;
-        }
-
-        .filter-box a {
-            font-size: 14px;
-            text-decoration: none;
-            color: #2c3e50;
-            margin-left: 5px;
-        }
-
-        h2 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            max-width: 40%;
-            text-align: center;
-        }
-
-        .filter-box a:hover {
-            text-decoration: underline;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 90%;
-            max-width: 950px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        th {
-            background: #2c3e50;
-            color: white;
-            padding: 10px;
-            font-weight: 500;
-        }
-
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        tbody tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        tbody tr:hover {
-            background: #eef6ff;
-        }
-
-        canvas {
-            max-width: 700px;
-            max-height: 300px;
-        }
-
-        h1 {
-            max-width: 50%;
-            text-align: center;
-            margin: 10px 0; !important;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/coin.css}"/>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="nav-title">Digital Asset Analytics System</div>
-        <nav class="nav-links">
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/lstm-form}">LSTM Forecast</a>
-            <a th:href="@{/nlp}">Sentiment Analysis</a>
+        <div class="nav-title">
+            <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#logo}"></use></svg>
+            Digital Asset Analytics
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Markets</a>
+            <a th:href="@{/lstm-form}">Forecast</a>
+            <a th:href="@{/nlp}">Sentiment</a>
         </nav>
     </header>
 
 
-    <h1 th:text="${symbol}"></h1>
+    <h1>
+        <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#coin}"></use></svg>
+        <span th:text="${symbol}"></span>
+    </h1>
 
     <p th:if="${fromDate} != null and ${toDate} != null"
        th:text="'From ' + ${fromDate} + ' to ' + ${toDate}">
@@ -131,7 +58,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="row : ${rows}">
+        <tr th:each="row : ${rows}" th:data-date="${row.date}" th:data-close="${row.close}">
             <td th:text="${row.date}"></td>
             <td th:text="${row.open}"></td>
             <td th:text="${row.high}"></td>
@@ -142,34 +69,8 @@
         </tbody>
     </table>
 
-    <script th:inline="javascript">
-        const labels = [[${labels}]];
-        const closes = [[${closes}]];
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/coin.js}"></script>
 
-        const ctx = document.getElementById('priceChart');
-
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Close',
-                    data: closes,
-                    borderWidth: 2,
-                    fill: false,
-                    tension: 0.1
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    x: { display: true, title: { display: true, text: 'Date' } },
-                    y: { display: true, title: { display: true, text: 'Price' } }
-                }
-            }
-        });
-    </script>
 </body>
 </html>

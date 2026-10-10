@@ -1,120 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LSTM Forecast – Form</title>
-    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
-    <style>
-        body {
-            background: #f4f7fb;
-        }
-
-        .page-wrapper {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .ta-form-card {
-            margin: 40px auto;
-            background: #ffffff;
-            color: #2c3e4f;
-            border-radius: 14px;
-            padding: 28px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-            border: 1px solid rgba(30, 58, 138, 0.15);
-        }
-
-        .ta-form-card h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #2c3e4f;
-        }
-
-        .ta-form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px 24px;
-            margin-bottom: 20px;
-        }
-
-        .ta-form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .ta-form-group label {
-            font-size: 14px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #2c3e4f;
-        }
-
-        .ta-form-group input,
-        .ta-form-group select {
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #4b5563;
-            background: #ffffff;
-            color: #2c3e4f;
-            font-size: 14px;
-        }
-
-        .ta-form-group input:focus,
-        .ta-form-group select:focus {
-            outline: none;
-            border-color: #1d4ed8;
-            box-shadow: 0 0 0 1px rgba(37,99,235,0.4);
-        }
-
-        .ta-form-actions {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .ta-submit-btn {
-            padding: 10px 22px;
-            border-radius: 999px;
-            border: none;
-            background: #182e42;
-            color: #fff;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
-        }
-
-        .ta-submit-btn:hover {
-            background: #2a4965;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-        }
-
-        .ta-form-card > svg {
-            width: 100%;
-            max-width: 900px;
-        }
-
-    </style>
+    <link rel="stylesheet" th:href="@{/css/lstm-form.css}"/>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="nav-title">Digital Asset Analytics System</div>
-        <nav class="nav-links">
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/lstm-form}">LSTM Forecast</a>
-            <a th:href="@{/nlp}">Sentiment Analysis</a>
+        <div class="nav-title">
+            <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#logo}"></use></svg>
+            Digital Asset Analytics
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Markets</a>
+            <a th:href="@{/lstm-form}">Forecast</a>
+            <a th:href="@{/nlp}">Sentiment</a>
         </nav>
     </header>
 
     <div class="page-wrapper">
         <div class="ta-form-card">
-            <h1>Run LSTM Forecast</h1>
+            <h1>
+                <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#forecast}"></use></svg>
+                RUN LSTM FORECAST
+            </h1>
 
             <form th:action="@{/lstm}" method="get">
                 <div class="ta-form-grid">
@@ -147,55 +69,56 @@
             </form>
         </div>
 
-        <div class="ta-form-card" style="margin-bottom: 24px;">
-            <h1 style="font-size: 26px; margin-bottom: 16px; text-align:center;">
+        <div class="ta-form-card arch-card">
+            <h1 class="section-title">
+                <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#layers}"></use></svg>
                 LSTM Model Architecture
             </h1>
 
-            <div class="table-slider" style="margin-top: 12px;">
-                <table style="width:100%; border-collapse:collapse; font-size: 16px; color:#2c3e4f;">
+            <div class="table-slider arch-slider">
+                <table class="arch-table">
                     <thead>
-                    <tr style="background:#f4f7fb;">
-                        <th style="border:1px solid #cbd5e1; padding:8px; text-align:center;">Layer (type)</th>
-                        <th style="border:1px solid #cbd5e1; padding:8px; text-align:center;">Output Shape</th>
-                        <th style="border:1px solid #cbd5e1; padding:8px; text-align:center;">Param #</th>
+                    <tr>
+                        <th>Layer (type)</th>
+                        <th>Output Shape</th>
+                        <th>Param #</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">lstm_1 (LSTM, 32)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">(None, 30, 32)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px; text-align:center;">4,352</td>
+                        <td>lstm_1 (LSTM, 32)</td>
+                        <td>(None, 30, 32)</td>
+                        <td>4,352</td>
                     </tr>
                     <tr>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">dropout_1 (Dropout, 0.2)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">(None, 30, 32)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px; text-align:center;">0</td>
+                        <td>dropout_1 (Dropout, 0.2)</td>
+                        <td>(None, 30, 32)</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">lstm_2 (LSTM, 16)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">(None, 30, 16)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px; text-align:center;">3,136</td>
+                        <td>lstm_2 (LSTM, 16)</td>
+                        <td>(None, 30, 16)</td>
+                        <td>3,136</td>
                     </tr>
                     <tr>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">last timestep</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">(None, 16)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px; text-align:center;">0</td>
+                        <td>last timestep</td>
+                        <td>(None, 16)</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">dropout_2 (Dropout, 0.2)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">(None, 16)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px; text-align:center;">0</td>
+                        <td>dropout_2 (Dropout, 0.2)</td>
+                        <td>(None, 16)</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">fc (Dense, 1)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px;">(None, 1)</td>
-                        <td style="border:1px solid #cbd5e1; padding:8px; text-align:center;">17</td>
+                        <td>fc (Dense, 1)</td>
+                        <td>(None, 1)</td>
+                        <td>17</td>
                     </tr>
                     </tbody>
                 </table>
 
-                <p style="margin-top:10px; font-size:15px; text-align: left;">
+                <p class="arch-totals">
                     Total params: <strong>7,505</strong><br/>
                     Trainable params: <strong>7,505</strong><br/>
                     Non-trainable params: <strong>0</strong>
@@ -204,7 +127,8 @@
         </div>
 
         <div class="ta-form-card">
-            <h1 style="font-size: 26px; margin-bottom: 16px; text-align:center;">
+            <h1 class="section-title">
+                <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#network}"></use></svg>
                 LSTM Network Diagram
             </h1>
 
@@ -285,7 +209,8 @@
 
         <div class="ta-form-card">
 
-            <h1 style="font-size: 26px; margin-bottom: 16px; text-align:center;">
+            <h1 class="section-title">
+                <svg class="icon" aria-hidden="true"><use th:href="@{/img/icons.svg#network}"></use></svg>
                 LSTM Network Graph
             </h1>
 
@@ -429,6 +354,8 @@
             </svg>
         </div>
     </div>
+
+    <script th:src="@{/js/navbar.js}"></script>
 
 </body>
 </html>

@@ -1,0 +1,20 @@
+h2 {
+    width: var(--content-fluid);
+    max-width: var(--content-max);
+    margin: 4px 0 12px 0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7a8c;
+}
+
+canvas {
+    max-width: 700px;
+    max-height: 300px;
+    margin-bottom: 28px;
+}
+
+th {
+    font-weight: 500;
+}
