@@ -157,8 +157,8 @@ The LSTM microservice trains a neural network over 200 epochs. The training and 
 ## User Interface Demonstration
 
 <img src="screenshots/3.png" width="600"/>
-<img src="screenshots/4.png" width="600"/>
 <img src="screenshots/5.png" width="600"/>
+<img src="screenshots/4.png" width="600"/>
 
 ---
 
