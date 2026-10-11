@@ -11,7 +11,7 @@ body {
     color: #2c3e50;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    background: linear-gradient(to bottom, #eef1f5 0%, #dfe3e8 100%);
+    background: #ffffff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
