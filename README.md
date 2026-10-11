@@ -158,11 +158,8 @@ Training and validation losses are **decreasing**, indicating that the model is 
 
 ## User Interface: LSTM Price Forecast
 
-An interactive interface for price forecasting using a
-Long Short-Term Memory (LSTM) neural network. The interface provides
-price visualizations, configurable forecasting parameters,
-and model performance metrics such as RMSE, MAPE, and R² to
-evaluate prediction accuracy.
+The interface provides price visualizations, configurable forecasting parameters,
+and model evaluation metrics such as RMSE, MAPE, and R².
 
 <img src="screenshots/3.png" width="600"/>
 
