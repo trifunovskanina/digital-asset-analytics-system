@@ -47,6 +47,7 @@
                                name="symbol"
                                type="text"
                                placeholder="bitcoin"
+                               required
                                value="bitcoin"/>
                     </div>
 
@@ -55,6 +56,9 @@
                         <input id="limit"
                                name="days"
                                type="number"
+                               min="1"
+                               max="60"
+                               required
                                value="20"/>
                     </div>
 

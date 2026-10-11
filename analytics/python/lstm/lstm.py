@@ -167,28 +167,31 @@ def train_and_evaluate(model, train_loader, val_loader, criterion, optimizer, nu
 def predict_future_prices(model, last_closes, scaler_x, scaler_y, n_steps):
     model.eval()
 
-    # scale past lookback days
-    window = scaler_x.transform(last_closes.reshape(1, -1)).flatten()
+    # keep closing prices in original scale
+    window = np.asarray(last_closes, dtype=float).copy()
 
     future = []
     for _ in range(n_steps):
-        # (1, timesteps, features) -> (1, 30, 1)
-        next_day = torch.tensor(window, dtype=torch.float32).reshape(1, LOOKBACK, 1)
+        # standardize all lag features before each prediction
+        scaled_window = scaler_x.transform(window.reshape(1, -1))
+
+        # (batch, timesteps, features) -> (1, 30, 1)
+        next_day = torch.tensor(scaled_window, dtype=torch.float32).reshape(1, LOOKBACK, 1)
 
         with torch.no_grad():
-            logits = model(next_day).item()
+            prediction_scaled = model(next_day).item()
 
-        future.append(logits)
+        prediction = scaler_y.inverse_transform(
+            np.array([[prediction_scaled]])
+        )[0, 0]
+
+        future.append(float(prediction))
 
         # drop the oldest value and append new prediction
         window = window[1:]
-        window = np.append(window, logits)
+        window = np.append(window, prediction)
 
-    # convert back to original price scale
-    future = np.array(future).reshape(-1, 1)
-    future_prices = scaler_y.inverse_transform(future).flatten()
-
-    return future_prices
+    return np.array(future)
 
 def main(symbol="bitcoin", n_epochs=20):
     global train_X, val_X, test_X, train_y, val_y, test_y
