@@ -58,7 +58,10 @@ digital-asset-analytics-system/
 │   │   │   │
 │   │   │   └── resources/
 │   │   │       ├── templates/           
-│   │   │       ├── static/             
+│   │   │       ├── static/            
+│   │   │       │   ├── css/
+│   │   │       │   ├── img/
+│   │   │       │   └── js/ 
 │   │   │       └── application.properties
 │   │   │
 │   │   └── test/                        
@@ -84,6 +87,15 @@ digital-asset-analytics-system/
 │       ├── ohlcv.csv                 
 │       └── news.csv                    
 │
+├── spring/
+│   └── Dockerfile
+├── lstm/
+│   └── Dockerfile
+├── nlp/
+│   └── Dockerfile
+│
+├── azure/
+├── docker-compose.yml
 └── README.md
 ```
 
@@ -156,7 +168,7 @@ Training and validation losses are **decreasing**, indicating that the model is 
 
 ---
 
-## User Interface: LSTM Price Forecast
+## Long Short-Term Memory Price Forecast
 
 The interface provides price visualizations, configurable forecasting parameters,
 and model evaluation metrics such as RMSE, MAPE, and R².
@@ -167,6 +179,6 @@ and model evaluation metrics such as RMSE, MAPE, and R².
 
 ## Running the Project
 
-```bash
+```
 docker compose up --build
 ```
