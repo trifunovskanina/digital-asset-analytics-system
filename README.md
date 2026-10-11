@@ -138,9 +138,10 @@ Each service exposes interactive documentation:
 
 ---
 
-## Docker Compose Startup
+## Docker Deployment
 
-Docker Compose launches the application stack, recreating the containers. PostgreSQL initializes and becomes ready to accept connections, followed by the Spring Boot application starting successfully. All services communicate internally through Docker's network.
+The system is containerized using Docker Compose, integrating the Spring Boot application,
+two FastAPI microservices, and a PostgreSQL database.
 
 <img src="screenshots/1.png" width="600"/>
 
@@ -148,9 +149,22 @@ Docker Compose launches the application stack, recreating the containers. Postgr
 
 ## Neural Network Training
 
-The LSTM microservice trains a neural network over 200 epochs. The training and validation loss are **decreasing**, which indicates that the model is learning the historical patterns.
+The LSTM neural network is trained over 200 epochs using historical closing prices. 
+Training and validation losses are **decreasing**, indicating that the model is learning the historical patterns.
 
 <img src="screenshots/2.png" width="600"/>
+
+---
+
+## User Interface: LSTM Price Forecast
+
+An interactive interface for price forecasting using a
+Long Short-Term Memory (LSTM) neural network. The interface provides
+price visualizations, configurable forecasting parameters,
+and model performance metrics such as RMSE, MAPE, and R² to
+evaluate prediction accuracy.
+
+<img src="screenshots/3.png" width="600"/>
 
 ---
 
