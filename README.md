@@ -41,7 +41,7 @@ Services communicate internally through Docker’s network.
 
 <img src="docs/architecture.png" width="800"/>
 
-The browser only talks to the Spring Boot application, which reads market data from PostgreSQL directly and calls the microservices over HTTP:
+The browser only talks to the Spring Boot application, which reads market data from PostgreSQL and calls the microservices over HTTP:
 
 - `POST /predict` - **LSTM service** loads a coin's history from PostgreSQL, trains the model, and returns a price forecast
 - `POST /sentiment` - **NLP service** loads news articles from PostgreSQL and returns a sentiment label for each
